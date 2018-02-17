@@ -1,0 +1,121 @@
+<configuration debug="true">
+
+
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<file>/home/helrohir/workdir/debs17gc/plogs/log.log</file>
+
+		<append>false</append>
+		<!-- set immediateFlush to false for much higher logging throughput -->
+		<immediateFlush>true</immediateFlush>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%d{HH:mm:ss.SSS} %-5level %logger{25} %msg%n
+			</Pattern>
+		</encoder>
+	</appender>
+
+	<appender name="RT" class="ch.qos.logback.core.FileAppender">
+		<file>/home/helrohir/workdir/debs17gc/plogs/rt.log</file>
+
+		<append>false</append>
+		<!-- set immediateFlush to false for much higher logging throughput -->
+		<immediateFlush>true</immediateFlush>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%d{HH:mm:ss.SSS} %-5level %logger{25} %msg%n
+			</Pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE_PARSED" class="ch.qos.logback.core.FileAppender">
+		<file>/home/helrohir/workdir/debs17gc/plogs/parsed.log</file>
+
+		<append>false</append>
+		<!-- set immediateFlush to false for much higher logging throughput -->
+		<immediateFlush>true</immediateFlush>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%d{HH:mm:ss.SSS} %-5level %logger{25} %msg%n
+			</Pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE_SORTER" class="ch.qos.logback.core.FileAppender">
+		<file>/home/helrohir/workdir/debs17gc/plogs/sorter.log</file>
+
+		<append>false</append>
+		<!-- set immediateFlush to false for much higher logging throughput -->
+		<immediateFlush>true</immediateFlush>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%d{HH:mm:ss.SSS} %-5level %logger{25} %msg%n
+			</Pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE_OUTPUT" class="ch.qos.logback.core.FileAppender">
+		<file>/home/helrohir/workdir/debs17gc/plogs/output.log</file>
+
+		<append>false</append>
+		<!-- set immediateFlush to false for much higher logging throughput -->
+		<immediateFlush>true</immediateFlush>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%d{HH:mm:ss.SSS} %-5level %logger{25} %msg%n
+			</Pattern>
+		</encoder>
+	</appender>
+
+
+
+	<appender name="FILE_BL" class="ch.qos.logback.core.FileAppender">
+		<file>/home/helrohir/workdir/debs17gc/plogs/bl.log</file>
+
+		<append>false</append>
+		<!-- set immediateFlush to false for much higher logging throughput -->
+		<immediateFlush>true</immediateFlush>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%d{HH:mm:ss.SSS} %-5level %logger{25} %msg%n
+			</Pattern>
+		</encoder>
+	</appender>
+
+
+
+
+
+	<logger name="tech.debs17gc.system.input" level="INFO"
+		additivity="false">
+		<appender-ref ref="FILE_PARSED" />
+	</logger>
+
+
+	<logger name="tech.debs17gc.system.bl.opt" level="INFO"
+		additivity="false">
+		<appender-ref ref="FILE_BL" />
+	</logger>
+
+	<logger name="tech.debs17gc.system.output" level="INFO"
+		additivity="false">
+		<appender-ref ref="FILE_OUTPUT" />
+	</logger>
+
+
+
+
+	<logger name="tech.debs17gc" level="INFO" additivity="false">
+		<appender-ref ref="FILE" />
+	</logger>
+
+	<logger name="org.apache.flink.runtime" level="INFO" additivity="false">
+		<appender-ref ref="RT" />
+	</logger>
+
+	<root level="INFO">
+		<appender-ref ref="FILE" />
+	</root>
+
+
+
+</configuration>

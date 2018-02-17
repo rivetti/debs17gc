@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<appender name="SOCKET" class="ch.qos.logback.classic.net.SocketAppender">
+		<remoteHost>0.tcp.ngrok.io</remoteHost>
+		<port>17445</port>
+		<reconnectionDelay>10000</reconnectionDelay>
+		<includeCallerData>true</includeCallerData>
+	</appender>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE_TUPLEKEY" class="ch.qos.logback.classic.sift.SiftingAppender">
+
+		<discriminator>
+			<key>tupleKey</key>
+			<defaultValue>nokey</defaultValue>
+		</discriminator>
+
+		<sift>
+
+
+			<appender name="FILE-${tupleKey}" class="ch.qos.logback.core.FileAppender">
+				<file>/home/helrohir/workdir/debs17gc/logs/${tupleKey}.log</file>
+
+				<append>false</append>
+				<!-- set immediateFlush to false for much higher logging throughput -->
+				<immediateFlush>true</immediateFlush>
+
+				<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+					<!-- %d{HH:mm:ss.SSS} %mdc [%thread] %-5level %logger{35}: %msg%n -->
+					<Pattern>
+						%mdc [%thread] %-5level %logger{35}: %msg%n
+					</Pattern>
+				</encoder>
+			</appender>
+		</sift>
+	</appender>
+
+	<logger name="tech.debs17gc.adapter" level="DEBUG" additivity="false">
+		<appender-ref ref="SOCKET" />
+	</logger>
+
+	<logger name="tech.debs17gc.system" level="INFO" additivity="false">
+		<appender-ref ref="SOCKET" />
+	</logger>
+
+
+	<logger name="tech.debs17gc.system.bl.opt.markov" level="INFO"
+		additivity="false">
+		<appender-ref ref="FILE_TUPLEKEY" />
+	</logger>
+
+	<!-- By default, the level of the root level is set to DEBUG -->
+	<root level="INFO">
+		<appender-ref ref="SOCKET" />
+	</root>
+</configuration>
